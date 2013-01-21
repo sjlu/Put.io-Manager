@@ -2,8 +2,8 @@
 
 class Putio_model extends CI_Model
 {
-
    private $location = null;
+   private $process = null;
 
    function __construct()
    {
@@ -13,6 +13,8 @@ class Putio_model extends CI_Model
       $this->location = $this->config->item('putio_location');
       if (empty($this->location))
          $this->location = FCPATH.'downloads/';
+
+      $this->process = $this->config->item('putio_process');
    }
 
    private function _get_files($parent = 0)
@@ -78,6 +80,16 @@ class Putio_model extends CI_Model
          return false;
 
       return $this->putio->delete_file($file['id']);
+   }
+
+   function process_file($file)
+   {
+      if (empty($file) || !isset($file['name']))
+         return false;
+
+      exec($this->process . ' ' . $this->location . 'complete/ ' . $file['name']);
+
+      return true;
    }
 
 }

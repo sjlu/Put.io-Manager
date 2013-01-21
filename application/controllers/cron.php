@@ -6,7 +6,7 @@ class Cron extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('putio_model', 'process_model'));
+		$this->load->model(array('putio_model'));
 	}
 
 	function sync()
@@ -22,9 +22,10 @@ class Cron extends CI_Controller
 
 			if ($this->putio_model->download_file($file))
 				$this->putio_model->delete_file($file);
+
+			$this->putio_model->process_file($file);
 		}
 
-		$this->process_model->process();
 	}
 
 }

@@ -15,4 +15,10 @@ $config['putio_key'] = 'QLGRUYAP';
  */
 $config['putio_location'] = '';
 
+/**
+ * What do we run after when we
+ * got your file?
+ */
+$config['putio_process'] = 'python /usr/share/sickbeard/autoProcessTV/sabToSickBeard.py'
+
 ?>
