@@ -22,6 +22,10 @@ You'll need to have a [Put.io](http://put.io) account and you will need to have 
 
 You probably want to automate your downloads with [Put.io](http://put.io). To do so, you can use this awesome tool called [showRSS](http://showrss.karmorra.info/). Add the RSS feed to your account and it'll do the rest.
 
+## Requests & Issues
+
+Any requests or issues should go into the [issue tracker](https://github.com/sjlu/Put.io-Manager/issues). All suggestions are welcome as this is not a fully speced or completed project yet.
+
 ## License
 
 MIT.
