@@ -19,7 +19,22 @@ class Putio {
 
    function add_torrent_file($file)
    {
-      return $this->putio->files->upload($file);
+      $url = 'https://api.put.io/v2/files/upload?oauth_token=' . $this->key;
+      $post = array(
+             "file" => "@" . $file
+      );
+
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_HEADER, 0);
+      curl_setopt($ch, CURLOPT_VERBOSE, 0);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_POST, true);
+
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+      return curl_exec($ch);
+
+      // return $this->putio->files->upload($file);
    }
 
    function add_torrent($url)

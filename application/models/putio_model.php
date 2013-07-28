@@ -42,7 +42,7 @@ class Putio_model extends CI_Model
       foreach ($files as $file)
       {
          $this->putio->add_torrent_file($location . $file);
-         delete_files($location . $file);
+         unlink($location . $file);
       }
    }
 
