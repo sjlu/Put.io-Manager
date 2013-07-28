@@ -53,7 +53,7 @@ class CurlEngine extends HTTPHelper implements HTTPEngine
         {
             if (($fp = @fopen($outFile, 'w+')) === false)
             {
-                // throw new LocalStorageException('Unable to create local file');
+                throw new LocalStorageException('Unable to create local file');
             }
 
             $options[CURLOPT_FILE] = $fp;

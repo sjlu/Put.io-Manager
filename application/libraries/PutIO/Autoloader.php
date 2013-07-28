@@ -25,7 +25,10 @@ spl_autoload_register(function($className)
         }
            
         $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-        require APPPATH . 'libraries/' . $fileName;
+        
+        $fileName = dirname(__FILE__) . "/../" . $fileName;
+        
+        require $fileName;
     }
 });
 

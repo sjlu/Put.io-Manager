@@ -142,23 +142,22 @@ abstract class PutIOHelper
         }
 
         $url = static::API_URL . $path;
-        return $this->getHTTPEngine($this->putio->HTTPEngine)->request($method, $url, $params, $outFile, $returnBool, $arrayKey, $this->putio->SSLVerifyPeer);
+        return $this->getHTTPEngine()->request($method, $url, $params, $outFile, $returnBool, $arrayKey, $this->putio->SSLVerifyPeer);
     }
     
     
     /**
      * Creates and returns a unique instance of the requested HTTP engine class.
      *
-     * @param string $name   Name of the HTTP engine.
      * @return object        Instance of the HTTP engine.
      * @throws PutIO\Exceptions\UnsupportedHTTPEngineException
      *
     **/
-    protected function getHTTPEngine($name)
+    protected function getHTTPEngine()
     {
         if (!isset($this->HTTPEngine))
         {
-            $className = 'PutIO\Engines\HTTP\\' . $name . 'Engine';
+            $className = 'PutIO\Engines\HTTP\\' . $this->putio->HTTPEngine . 'Engine';
             $this->HTTPEngine = new $className();
         }
         

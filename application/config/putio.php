@@ -8,7 +8,7 @@
  * 
  * EX. 'PAYURGLP'
  */
-$config['putio_key'] = '';
+$config['putio_key'] = 'QLGRUYAP';
 
 /**
  * This is where we will put your
@@ -25,6 +25,6 @@ $config['putio_location'] = '';
  * 
  * EX. 'python /usr/share/sickbeard/autoProcessTV/sabToSickBeard.py'
  */
-$config['putio_process'] = ''
+$config['putio_process'] = 'python /usr/share/sickbeard/autoProcessTV/sabToSickBeard.py';
 
 ?>
