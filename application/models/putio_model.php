@@ -100,7 +100,14 @@ class Putio_model extends CI_Model
       if (empty($file) || !isset($file['name']))
          return false;
 
-      exec($this->process . ' ' . $this->location . 'complete/ ' . $file['name']);
+      if (filesize($file) < 2147483648)
+         exec($this->process . ' ' . $this->location . 'complete/ ' . $file['name']);
+      else
+      {
+         $directory = '/mnt/disk/downloads/complete/Movies/' . basename($file['name']);
+         mkdir($directory);
+         rename($this->location . 'complete/' . $file['name'], $directory . '/' . $file['name']);
+      }
 
       return true;
    }
