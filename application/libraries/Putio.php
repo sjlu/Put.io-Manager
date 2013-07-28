@@ -17,6 +17,11 @@ class Putio {
 
    }
 
+   function add_torrent_file($file)
+   {
+      return $this->putio->files->upload($file);
+   }
+
    function add_torrent($url)
    {
       $this->putio->transfers->add($url);

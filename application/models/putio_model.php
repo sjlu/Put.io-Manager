@@ -12,7 +12,7 @@ class Putio_model extends CI_Model
 
       $this->location = $this->config->item('putio_location');
       if (empty($this->location))
-         $this->location = FCPATH.'downloads/';
+         $this->location = FCPATH . 'downloads/';
 
       $this->process = $this->config->item('putio_process');
    }
@@ -20,7 +20,7 @@ class Putio_model extends CI_Model
    private function _get_files($parent = 0)
    {
       $objects = $this->putio->list_files($parent);
-      
+
       $files = array();
       foreach ($objects as $object)
       {
@@ -33,9 +33,22 @@ class Putio_model extends CI_Model
       return $files;
    }
 
+   function upload_torrents()
+   {
+      $location = $this->location . 'torrents/';
+
+      $this->load->helper(array('directory', 'file'));
+      $files = directory_map($location);
+      foreach ($files as $file)
+      {
+         $this->putio->add_torrent_file($location . $file);
+         delete_files($location . $file);
+      }
+   }
+
    function get_files()
    {
-      return $this->_get_files();      
+      return $this->_get_files();
    }
 
    function download_file($file)
@@ -51,7 +64,7 @@ class Putio_model extends CI_Model
 
       if ($this->putio->download_file($file['id'], $this->location . 'incomplete/' . $file['name']))
          rename(
-            $this->location . 'incomplete/' . $file['name'], 
+            $this->location . 'incomplete/' . $file['name'],
             $this->location . 'complete/' . $file['name']
          );
       else

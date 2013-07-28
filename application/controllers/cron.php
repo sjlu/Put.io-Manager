@@ -1,6 +1,6 @@
 <?php
 
-class Cron extends CI_Controller 
+class Cron extends CI_Controller
 {
 
 	function __construct()
@@ -11,6 +11,9 @@ class Cron extends CI_Controller
 
 	function sync()
 	{
+		// upload the files
+		$this->putio_model->upload_torrents();
+
 		// get the file list
 		$files = $this->putio_model->get_files();
 
