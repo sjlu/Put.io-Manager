@@ -102,7 +102,7 @@ class Putio_model extends CI_Model
 
       $filepath = $this->location . 'complete/' . $file['name'];
 
-      if (filesize($filepath) < 2147483648)
+      if (filesize($filepath) < 3221225472)
          exec($this->process . ' ' . $this->location . 'complete/ ' . $file['name']);
       else
       {
