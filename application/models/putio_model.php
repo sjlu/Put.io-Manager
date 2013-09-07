@@ -15,6 +15,8 @@ class Putio_model extends CI_Model
          $this->location = FCPATH . 'downloads/';
 
       $this->process = $this->config->item('putio_process');
+
+      $this->blackhole = $this->config->item('blackhole');
    }
 
    private function _get_files($parent = 0)
@@ -35,7 +37,7 @@ class Putio_model extends CI_Model
 
    function upload_torrents()
    {
-      $location = $this->location . 'torrents/';
+      $location = $this->blackhole;
 
       $this->load->helper(array('directory', 'file'));
       $files = directory_map($location);
