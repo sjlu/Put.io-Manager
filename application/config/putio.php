@@ -17,7 +17,14 @@ $config['putio_key'] = 'QLGRUYAP';
  * 
  * EX. /var/www/putio/downloads
  */
-$config['putio_location'] = '';
+$config['putio_location'] = '/var/www/putio/downloads';
+
+/**
+ * This is where we look for torrent
+ * files to upload to your putio
+ * account.
+ */
+$config['blackhole'] = '/var/www/couchpotato/torrents';
 
 /**
  * What do we run after when we
