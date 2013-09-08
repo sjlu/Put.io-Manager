@@ -43,6 +43,6 @@ $config['movie_path'] = '/var/www/sabnzbd/downloads/complete/Movies/';
 /**
  * Where should the lock file go?
  */
-$config['lock_file'] = '/var/run/putio.lock';
+$config['lock_file'] = '/var/www/putio/putio.lock';
 
 ?>
