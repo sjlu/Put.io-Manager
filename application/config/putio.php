@@ -40,4 +40,9 @@ $config['putio_process_movies'] = 'python /home/sjlu/sabToCouchPotato.py -d';
  */
 $config['movie_path'] = '/var/www/sabnzbd/downloads/complete/Movies/';
 
+/**
+ * Where should the lock file go?
+ */
+$config['lock_file'] = '/var/run/putio.lock';
+
 ?>
