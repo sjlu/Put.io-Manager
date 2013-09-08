@@ -17,6 +17,8 @@ class Putio_model extends CI_Model
       $this->process = $this->config->item('putio_process');
 
       $this->blackhole = $this->config->item('blackhole');
+
+      $this->movie_path = $this->config->item('movie_path');
    }
 
    private function _get_files($parent = 0)
@@ -108,7 +110,7 @@ class Putio_model extends CI_Model
          exec($this->process . ' ' . $this->location . 'complete/ ' . $file['name']);
       else
       {
-         $directory = '/mnt/disk/downloads/complete/Movies/' . basename($file['name']);
+         $directory = $this->movie_path . basename($file['name']);
          mkdir($directory);
          rename($filepath, $directory . '/' . $file['name']);
       }
