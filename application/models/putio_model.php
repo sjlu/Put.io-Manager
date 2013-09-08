@@ -14,7 +14,8 @@ class Putio_model extends CI_Model
       if (empty($this->location))
          $this->location = FCPATH . 'downloads/';
 
-      $this->process = $this->config->item('putio_process');
+      $this->process_tv = $this->config->item('putio_process_tv');
+      $this->process_movies = $this->config->item('putio_process_movies');
 
       $this->blackhole = $this->config->item('blackhole');
 
@@ -66,12 +67,14 @@ class Putio_model extends CI_Model
       if (!file_exists($this->location . 'incomplete/'))
          mkdir($this->location . 'incomplete/');
 
-      if ($this->putio->download_file($file['id'], $this->location . 'incomplete/' . $file['name']))
+      if ($this->putio->download_file($file['id'], $this->location . 'incomplete/' . $file['name'])) {
+         mkdir($this->location . 'complete/' . basename($file['name']));
+
          rename(
             $this->location . 'incomplete/' . $file['name'],
-            $this->location . 'complete/' . $file['name']
+            $this->location . 'complete/' . basename($file['name']) . '/' . $file['name']
          );
-      else
+      } else
          return false;
 
       return true;
@@ -104,16 +107,13 @@ class Putio_model extends CI_Model
       if (empty($file) || !isset($file['name']))
          return false;
 
-      $filepath = $this->location . 'complete/' . $file['name'];
+      $dirpath = $this->location . 'complete/' . basename($file['name']) . '/';
+      $filepath = $dirpath . $file['name'];
 
       if (filesize($filepath) < 3221225472)
-         exec($this->process . ' ' . $this->location . 'complete/ ' . $file['name']);
+         exec($this->process_tv . ' ' . $dirpath);
       else
-      {
-         $directory = $this->movie_path . basename($file['name']);
-         mkdir($directory);
-         rename($filepath, $directory . '/' . $file['name']);
-      }
+         exec($this->process_movies . ' ' . $dirpath);
 
       return true;
    }

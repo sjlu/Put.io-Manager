@@ -32,7 +32,8 @@ $config['blackhole'] = '/var/www/couchpotato/torrents/';
  *
  * EX. 'python /usr/share/sickbeard/autoProcessTV/sabToSickBeard.py'
  */
-$config['putio_process'] = 'python /usr/share/sickbeard/autoProcessTV/sabToSickBeard.py';
+$config['putio_process_tv'] = 'python /usr/share/sickbeard/autoProcessTV/sabToSickBeard.py';
+$config['putio_process_movies'] = 'python /home/sjlu/sabToCouchPotato.py -d';
 
 /**
  * Where should we place movies?
